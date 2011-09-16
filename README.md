@@ -1,19 +1,19 @@
-  A simple image builder.
+  A simple image builder
   ======================
   
   Expressions:
   ------------
   
-  render(width, height)            - render image
-  draw(align,offsetX, offsetY,image) - draw image
-  image(file|url|stream)           - load image
-  save(file|stream,format,[image]) - save image
-  scale(width,height)              - height is optional(use width) e.g: scale(50%) == scale(50%,50%)
-  fit(width,height)                - relative scale the image until if fits (default as scale)
-                                     bounds of the given box
-  rotate(degrees,x,y)              - the rotation position x and y are optional (default is 50%)
-  fill(color)                      - fill with color
-  margin(left,top,right,bottom)    - add margins to image (resize image canvas)
+      render(width, height)            - render image
+      draw(align,offsetX, offsetY,image) - draw image
+      image(file|url|stream)           - load image
+      save(file|stream,format,[image]) - save image
+      scale(width,height)              - height is optional(use width) e.g: scale(50%) == scale(50%,50%)
+      fit(width,height)                - relative scale the image until if fits (default as scale)
+                                         bounds of the given box
+      rotate(degrees,x,y)              - the rotation position x and y are optional (default is 50%)
+      fill(color)                      - fill with color
+      margin(left,top,right,bottom)    - add margins to image (resize image canvas)
  
   Values:
   values ending with '%' means size relative to image size.
