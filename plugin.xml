@@ -1,0 +1,15 @@
+<plugin name='image-builder' version='0.1' grailsVersion='1.3.7 &gt; *'>
+  <author>Karol Balejko</author>
+  <authorEmail>kb@groovydev.org</authorEmail>
+  <title>A simple image builder.</title>
+  <description>A simple image builder grails plugin</description>
+  <documentation>http://grails.org/plugin/image-builder</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+  </resources>
+  <dependencies />
+  <behavior />
+</plugin>
