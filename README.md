@@ -4,7 +4,7 @@ A simple image builder grails plugin
 Example: How to create square 50px50p and 20px20p tumbnail images.
   
         def b = new org.groovydev.SimpleImageBuilder()
-        def result = b.render(width:'100px',height:'100px') {
+        b.render(width:'100px',height:'100px') {
            fill(color:'ffffff')
            def small
            image(file:'image.jpg') {
@@ -16,6 +16,7 @@ Example: How to create square 50px50p and 20px20p tumbnail images.
            }
            fit(width:20,height:20) {
              save(file:'thumbnail-20p.png', format:'png')
+             save(file:'thumbnail-20p.jpg', format:'jpg', bgcolor: '00ff00')
            }
         }
   
@@ -25,7 +26,11 @@ Expressions:
       render(width, height)            - render image
       draw(align,offsetX, offsetY,image) - draw image
       image(file|url|stream)           - load image
-      save(file|stream,format,[image]) - save image
+      
+      save(file|stream,format,[bgcolor],[image]) - save image
+      * format - png, jpg
+      * bgcolor (optional, default is white) - Save jpg file use the background color to paint under the non-opaque portions of the image.
+      
       scale(width,height)              - height is optional(use width) e.g: scale(50%) == scale(50%,50%)
       fit(width,height)                - relative scale the image until if fits (default as scale)
                                          bounds of the given box

@@ -34,4 +34,25 @@ class SimpleImageBuilderTest {
         }
     }
 
+    @Test
+    public void testSimpleImageBuilderFileJpg() {
+        SimpleImageBuilder b = new SimpleImageBuilder()
+        
+        def result = b.render(width:'100px',height:'100px') {
+           
+           def small
+           image(file:'test/files/apple-red.png') {
+               small = fit(width:100,height:100)
+           }
+           draw(align:'center', image:small)
+           fit(width:50,height:50) {
+             save(file:'target/thumbnail-50p.jpg', format:'jpg', bgcolor:'00ff00')
+           }
+           fit(width:20,height:20) {
+             save(file:'target/thumbnail-20p.jpg', format:'jpg')
+           }
+
+        }
+    }
+
 }

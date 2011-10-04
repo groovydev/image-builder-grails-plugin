@@ -109,6 +109,18 @@ class SimpleImageBuilder extends BuilderSupport {
         def save = {Map attrs->//[image=current],file,stream,format
             def image = attrs.image ?: current
             def format = parseFormat(attrs.format)
+            if (format.equalsIgnoreCase('jpg') || format.equalsIgnoreCase('jpeg')) {
+                def bgcolor
+                if (attrs.bgcolor) {
+                    bgcolor = parseColor(attrs.bgcolor)
+                } else {
+                    bgcolor = Color.white
+                }
+                def saveImage = new BufferedImage(image.width, image.width, BufferedImage.TYPE_INT_RGB);
+                Graphics2D g2 = saveImage.createGraphics()
+                g2.drawImage(image, 0, 0, image.width, image.width, bgcolor, null)
+                image = saveImage
+            }
             if (attrs.file) {
                 def file = parseFile(attrs.file)
                 ImageIO.write(image, format, file)
@@ -138,7 +150,7 @@ class SimpleImageBuilder extends BuilderSupport {
             def image = current
             def parsedwidth =  parseValue(attrs.width, image?.width, true, image?.width);
             def parsedHeight =  parseValue(attrs.height, image?.height, true, image?.height);
-            def newImage = new BufferedImage(parsedwidth, parsedHeight, BufferedImage.TYPE_INT_RGB);
+            def newImage = new BufferedImage(parsedwidth, parsedHeight, BufferedImage.TYPE_INT_ARGB);
             return newImage
         }
             
@@ -202,7 +214,7 @@ class SimpleImageBuilder extends BuilderSupport {
         def margin(image,left,top,right,bottom) {
             def width = left + image.width + right;
             def height = top + image.height + bottom;
-            def newImage = new BufferedImage(width.intValue(), height.intValue(),BufferedImage.TYPE_INT_ARGB);
+            def newImage = new BufferedImage(width.intValue(), height.intValue(),BufferedImage.TYPE_3BYTE_BGR);
             def graph = newImage.createGraphics();
             graph.drawImage(image,new AffineTransform(1.0d,0.0d,0.0d,1.0d,left,top),null);
             return newImage
